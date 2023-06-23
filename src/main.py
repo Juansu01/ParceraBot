@@ -8,6 +8,7 @@ import random
 
 from music import Music, EmptyQueue
 from utils import search_song
+from command_info import send_bot_help
 
 activity = discord.Activity(
     type=discord.ActivityType.listening,
@@ -133,4 +134,8 @@ async def skip(ctx):
     await ctx.send(f"Quité: {data[0].name}")
     await ctx.send(f"Y puse: {data[1].name}")
 
+
+@client.command(name="ayuda")
+async def send_help(ctx):
+    await send_bot_help(ctx.channel)
 client.run(CLIENT_TOKEN)
