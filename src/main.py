@@ -37,11 +37,23 @@ BYE_RESPONSES = [
 
 
 @client.event
+async def on_guild_join(guild):
+    for channel in guild.text_channels:
+        print(channel)
+        if str(channel) == "general":
+            await channel.send("Kemás ps gordoss, llegó la más embolatada 💋")
+            await channel.send("https://tenor.com/view/tulleras-gif-21992652")
+
+
+@client.event
 async def on_message(message):
     ctx = await client.get_context(message)
 
     if message.author == client.user:
         return
+
+    if message.content == "purebita":
+        await message.channel.send("holis")
 
     if message.content == "Hola Luna":
         await message.channel.send("Qué más pues 💋")
