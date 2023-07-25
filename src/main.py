@@ -152,7 +152,7 @@ async def leave(ctx):
         await ctx.voice_client.disconnect()
 
 
-@client.command(name="saltar")
+@client.command(name="skip")
 async def skip(ctx):
     if ctx.voice_client is None:
         await ctx.send("Mor, ni estoy tocando, tan boba")

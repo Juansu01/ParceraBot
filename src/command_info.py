@@ -15,7 +15,7 @@ async def send_bot_help(channel):
                     " se agrega a la cola")
     embed.add_field(name="pause", value="Pausar la canción que está sonando")
     embed.add_field(name="resume", value="Reiniciar canción")
-    embed.add_field(name="saltar", value="Pa saltar la canción ps")
+    embed.add_field(name="skip", value="Pa saltar la canción ps")
     embed.add_field(
         name="chao", value="Para sacar a la parcera del canal de voz")
     await channel.send(content=None, embed=embed)
