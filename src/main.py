@@ -10,7 +10,7 @@ import random
 from music import Music, EmptyQueue
 from utils import search_song
 from command_info import send_bot_help
-from voice_channel_actions import leave_after_being_alone
+from voice_channel_actions import leave_after_being_left_alone
 
 activity = discord.Activity(
     type=discord.ActivityType.listening,
@@ -40,8 +40,11 @@ BYE_RESPONSES = [
 
 @client.event
 async def on_voice_state_update(member: Member, before: VoiceState, after: VoiceState):
-    if (before.channel):
-        await leave_after_being_alone(member, before, client)
+    if (before.channel and len(before.channel.members) == 1):
+        player = music.get_player(guild_id=before.channel.guild.id)
+        if (player):
+            player.delete()
+        await leave_after_being_left_alone(member, before, client)
 
 
 @client.event
