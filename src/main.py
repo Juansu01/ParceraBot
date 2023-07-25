@@ -2,6 +2,7 @@ from discord.ext import commands
 from discord.ext import tasks
 from discord.utils import get
 from dotenv import load_dotenv
+from discord import Member, VoiceState, Client
 import os
 import discord
 import random
@@ -9,14 +10,15 @@ import random
 from music import Music, EmptyQueue
 from utils import search_song
 from command_info import send_bot_help
+from voice_channel_actions import leave_after_being_alone
 
 activity = discord.Activity(
     type=discord.ActivityType.listening,
     name="guaracha"
 )
 intents = discord.Intents.all()
-client = commands.Bot(command_prefix="Luna ",
-                      intents=intents, activity=activity)
+client: Client = commands.Bot(command_prefix="Luna ",
+                              intents=intents, activity=activity)
 music = Music()
 load_dotenv()
 CLIENT_TOKEN = os.getenv("CLIENT_TOKEN")
@@ -34,6 +36,12 @@ BYE_RESPONSES = [
     "Qué horror qué pena, ps, en el 2020 y pasando este tipo de cosas?",
     "Tan creída esta zpa perra"
 ]
+
+
+@client.event
+async def on_voice_state_update(member: Member, before: VoiceState, after: VoiceState):
+    if (before.channel):
+        await leave_after_being_alone(member, before, client)
 
 
 @client.event
@@ -59,6 +67,11 @@ async def on_message(message):
         await message.channel.send("Qué más pues 💋")
 
     await client.process_commands(message)
+
+
+@client.command(name="join")
+async def join(ctx):
+    await ctx.author.voice.channel.connect()
 
 
 @client.command(name="play")
