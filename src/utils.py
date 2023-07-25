@@ -1,4 +1,5 @@
 import yt_dlp
+from music import Music
 
 
 async def search_song(client, amount, song, get_url=False):
@@ -26,3 +27,7 @@ def get_channel_id(channels, name):
             return channel.id
 
     return None
+
+
+def get_guild_music_player(guild_id, music):
+    return music.get_player(guild_id)
