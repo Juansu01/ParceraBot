@@ -41,8 +41,9 @@ BYE_RESPONSES = [
 
 @client.event
 async def on_voice_state_update(member: Member, before: VoiceState, after: VoiceState):
-    if after.channel and not member.bot:
+    if after.channel and not member.bot and not before.channel:
         print("Someone joined")
+        print(member.activity)
         await send_random_message(member, client)
     if (before.channel and len(before.channel.members) == 1):
         player = music.get_player(guild_id=before.channel.guild.id)
