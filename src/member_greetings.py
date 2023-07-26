@@ -76,7 +76,7 @@ def find_category_by_name(member: Member):
         return "gays"
     if username == "franciscoelias":
         return "fran"
-    if member.global_name == "Mustf Sugar ✌✨":
+    if username == "mustf_s":
         return "mustfa"
     if username == "san8210":
         return "san"
