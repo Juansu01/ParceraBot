@@ -87,10 +87,11 @@ def find_category_by_name(member: Member):
 
 
 async def send_random_message(member: Member, client: Client):
+    options = [False] * 4 + [True]
     category = find_category_by_name(member)
     if not category:
         return
-    if choice([1, 2, 3]) == 1:
+    if not choice(options):
         return
 
     channel_id = get_channel_id(
