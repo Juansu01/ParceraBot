@@ -36,8 +36,8 @@ jobs:
       - name: Install ffmpeg
         run: |
           sudo apt-get install ffmpeg
-      - name: Check Secret
+      - name: Run Bot
         env:
           CLIENT_TOKEN: ${{ secrets.CLIENT_TOKEN }}
         run: |
-          echo "CLIENT_TOKEN $CLIENT_TOKEN"
+          python3 src/main.py CLIENT_TOKEN=$CLIENT_TOKEN
