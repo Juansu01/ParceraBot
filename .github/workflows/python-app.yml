@@ -38,4 +38,4 @@ jobs:
           sudo apt-get install ffmpeg
       - name: Check Secret
         run: |
-          echo " Environment= $CLIENT_TOKEN"
+          echo " Environment= ${{ secrets.CLIENT_TOKEN }}"
