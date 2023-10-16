@@ -1,4 +1,5 @@
 from utils import get_channel_id
+import random
 
 
 async def leave_after_being_left_alone(member, before, client):
@@ -9,5 +10,6 @@ async def leave_after_being_left_alone(member, before, client):
             channel_id = get_channel_id(
                 member.guild.channels, "General")
             channel = client.get_channel(channel_id)
-            await channel.send(f"No {member.mention} dejándome sola :face_with_symbols_over_mouth:")
+            if random.choice([1, 2, 3]) == 1:
+                await channel.send(f"No {member.mention} dejándome sola :face_with_symbols_over_mouth:")
             await voice_client.disconnect()
