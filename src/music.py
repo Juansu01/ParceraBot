@@ -2,15 +2,15 @@ import asyncio
 import aiohttp
 import re
 try:
-    import yt_dlp
+    import yt_dlp as youtube_dl
     import discord
     has_voice = True
 except ImportError:
     has_voice = False
 
 if has_voice:
-    yt_dlp.utils.bug_reports_message = lambda: ''
-    ydl = yt_dlp.YoutubeDL({"format": "bestaudio/best", "restrictfilenames": True, "noplaylist": True, "nocheckcertificate": True,
+    youtube_dl.utils.bug_reports_message = lambda: ''
+    ydl = youtube_dl.YoutubeDL({"format": "bestaudio/best", "restrictfilenames": True, "noplaylist": True, "nocheckcertificate": True,
                            "ignoreerrors": True, "logtostderr": False, "quiet": True, "no_warnings": True, "source_address": "0.0.0.0"})
 
 
