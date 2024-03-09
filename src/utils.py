@@ -1,11 +1,11 @@
-import yt_dlp
+import yt_dlp as youtube_dl
 from music import Music
 
 
 async def search_song(client, amount, song, get_url=False):
     info = await client.loop.run_in_executor(
         None,
-        lambda: yt_dlp.YoutubeDL(
+        lambda: youtube_dl.YoutubeDL(
             {"format": "bestaudio",
              "quiet": True
              }
