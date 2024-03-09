@@ -36,7 +36,7 @@ BYE_RESPONSES = [
     "No ps tan creída",
     "Qué horror qué pena, ps, en el 2020 y pasando este tipo de cosas?",
     "Tan creída esta zpa perra",
-    "Chao care rara"
+    "Chao care rara",
     "Ridícula"
 ]
 
