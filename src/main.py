@@ -6,6 +6,8 @@ from discord import Member, VoiceState, Client
 import os
 import discord
 import random
+import server
+from aiohttp import web
 
 from music import Music, EmptyQueue
 from utils import search_song
@@ -40,6 +42,18 @@ BYE_RESPONSES = [
     "Ridícula"
 ]
 
+@client.event
+async def on_ready():
+    client.server = server.HTTPServer(
+        bot=client,
+        host="0.0.0.0",
+        port="8000",
+    )
+    await client.server.start()
+
+@server.add_route(path="/", method="GET")
+async def home(request):
+    return web.json_response(data={"foo": "bar"}, status=200)
 
 @client.event
 async def on_voice_state_update(member: Member, before: VoiceState, after: VoiceState):
