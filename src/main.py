@@ -150,7 +150,18 @@ async def leave(ctx):
             player.delete()
         await ctx.send(random.choice(BYE_RESPONSES))
         await ctx.send(f"Vea, esta care rara me echó {ctx.message.author.mention}")
-        await ctx.voice_client.disconnect()
+        
+
+@client.command(name="stop")
+async def stop(ctx):
+    if ctx.voice_client is None:
+        await ctx.send("Dejamé quieta ome eee")
+    else:
+        player = music.get_player(guild_id=ctx.guild.id)
+        if player:
+            player.delete()
+        await ctx.send(random.choice(BYE_RESPONSES))
+        await ctx.send(f"Paradita por {ctx.message.author.mention} :woman_standing:")
 
 
 @client.command(name="skip")
