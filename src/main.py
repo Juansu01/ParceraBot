@@ -158,9 +158,9 @@ async def stop(ctx):
         await ctx.send("Dejamé quieta ome eee")
     else:
         player = music.get_player(guild_id=ctx.guild.id)
+        ctx.guild.voice_client.pause()
         if player:
             player.delete()
-        await ctx.send(random.choice(BYE_RESPONSES))
         await ctx.send(f"Paradita por {ctx.message.author.mention} :woman_standing:")
 
 
@@ -170,6 +170,10 @@ async def skip(ctx):
         await ctx.send("Mor, ni estoy tocando, tan boba")
         return
     player = music.get_player(guild_id=ctx.guild.id)
+
+    if not player:
+        await ctx.send("Tan amurada esta zpa, no hay cola")
+        return
     try:
         data = await player.skip()
     except EmptyQueue:
